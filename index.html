@@ -2,7 +2,6 @@
 <html>
 <body>
   <svg>
-    <text id="name" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"></text>
     <rect id="swatch"/>
     <text id="hex" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"></text>
   </svg>
@@ -25,8 +24,6 @@
     const params = new URLSearchParams(window.location.search)
     if (params.has("border")) {
         document.getElementById("swatch").style.stroke = lum < 128 ? "white" : "black"
-    } else if (params.has("name")) {
-      document.getElementById("swatch").style.stroke = lum < 128 ? "white" : "black"
     }
 </script>
 <style>
