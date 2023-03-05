@@ -2,8 +2,9 @@
 <html>
 <body>
   <svg>
-    <rect id="swatch"/>
     <text id="name" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"></text>
+    <rect id="swatch"/>
+    <text id="hex" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"></text>
   </svg>
 </body>
 <script>
@@ -12,17 +13,20 @@
     let lum = (parseInt(hex[0], 16) + parseInt(hex[1], 16) + parseInt(hex[2], 16)) / 3
     if (window.location.pathname !== "/") {
         document.getElementById("swatch").style.fill = c
-        document.getElementById("name").textContent = c.toUpperCase()
-        document.getElementById("name").style.fill = lum < 128 ? "white" : "black"
+        document.getElementById("hex").textContent = c.toUpperCase()
+        document.getElementById("hex").style.fill = lum < 128 ? "white" : "black"
         document.title = c.toUpperCase()
     } else {
         document.getElementById("swatch").style.fill = "black"
-        document.getElementById("name").textContent = ":("
-        document.getElementById("name").style.fill = "white"
+        document.getElementById("hex").textContent = ":("
+        document.getElementById("hex").style.fill = "white"
         document.title = "Swatch"
     }
-    if (new URLSearchParams(window.location.search).has("border")) {
+    const params = new URLSearchParams(window.location.search)
+    if (params.has("border")) {
         document.getElementById("swatch").style.stroke = lum < 128 ? "white" : "black"
+    } else if (params.has("name")) {
+      document.getElementById("swatch").style.stroke = lum < 128 ? "white" : "black"
     }
 </script>
 <style>
