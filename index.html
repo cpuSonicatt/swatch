@@ -1,35 +1,49 @@
 <!DOCTYPE html>
 <html>
 <body>
-  <svg>
-    <rect id="swatch"/>
-    <text id="hex" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"></text>
-  </svg>
+    <div id="border">
+        <div id="named">
+            <p id="name"></p>
+        </div>
+        <div id="textd">
+            <p id="text"></p>
+        </div>
+    </div>
 </body>
 <script>
-    let c = window.location.pathname.replace("/", "#")
+    // let c = window.location.pathname.replace("/", "#")
+    let c = "#ff73af"
     let hex = c.match(/\w{1,2}/g)
     let lum = (parseInt(hex[0], 16) + parseInt(hex[1], 16) + parseInt(hex[2], 16)) / 3
     if (window.location.pathname !== "/") {
-        document.getElementById("swatch").style.fill = c
-        document.getElementById("hex").textContent = c.toUpperCase()
-        document.getElementById("hex").style.fill = lum < 128 ? "white" : "black"
         document.title = c.toUpperCase()
+        document.body.style.backgroundColor = c
+        document.getElementById("text").innerHTML = c.toUpperCase()
+        document.getElementById("text").style.color = lum < 128 ? "white" : "black"
+        document.getElementById("name").style.color = lum < 128 ? "white" : "black"
     } else {
-        document.getElementById("swatch").style.fill = "black"
-        document.getElementById("hex").textContent = ":("
-        document.getElementById("hex").style.fill = "white"
+        document.body.style.backgroundColor = "black"
+        document.getElementById("text").innerHTML = ":("
+        document.getElementById("text").style.color = "white"
         document.title = "Swatch"
     }
+
     const params = new URLSearchParams(window.location.search)
     if (params.has("border")) {
-        document.getElementById("swatch").style.stroke = lum < 128 ? "white" : "black"
+        document.getElementById("border").style.border = `solid 3vmin ${lum < 128 ? "white" : "black"}`
+    }
+    if (params.has("name")) {
+        document.getElementById("name").innerHTML = params.get("name")
     }
 </script>
 <style>
-    html, body { margin:0; padding:0; overflow:hidden }
-    svg { position:fixed; top:0; bottom:0; left:0; right:0; height: 100%; width: 100%}
-    text { font-size: 15vw; font-family: sans-serif; font-weight: bold; font-style: italic;}
-    rect { height: 100%; width: 100%; stroke-width: 5%; }
+    html, body { margin:0; padding:0; overflow:hidden;}
+    #border {height: 100vh; box-sizing: border-box;}
+
+    #named {position:absolute; top: 50%; left:22%; transform: translateY(-120%);}
+    #name { font-size:4vw; font-family: sans-serif; font-weight: bold; font-style: italic; text-align: center;}
+    
+    #textd {position:absolute; top: 50%; left:50%; transform: translateX(-50%) translateY(-50%);}
+    #text { font-size:15vw; font-family: sans-serif; font-weight: bold; font-style: italic; text-align: center;}
 </style>
 </html>
