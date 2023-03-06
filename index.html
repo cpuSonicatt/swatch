@@ -2,9 +2,6 @@
 <html>
 <body>
     <div id="border">
-        <div id="named">
-            <p id="name"></p>
-        </div>
         <div id="textd">
             <p id="text"></p>
         </div>
@@ -19,7 +16,6 @@
         document.body.style.backgroundColor = c
         document.getElementById("text").innerHTML = c.toUpperCase()
         document.getElementById("text").style.color = lum < 128 ? "white" : "black"
-        document.getElementById("name").style.color = lum < 128 ? "white" : "black"
     } else {
         document.body.style.backgroundColor = "black"
         document.getElementById("text").innerHTML = ":("
@@ -31,16 +27,10 @@
     if (params.has("border")) {
         document.getElementById("border").style.border = `solid 3vmin ${lum < 128 ? "white" : "black"}`
     }
-    if (params.has("name")) {
-        document.getElementById("name").innerHTML = params.get("name")
-    }
 </script>
 <style>
     html, body { margin:0; padding:0; overflow:hidden;}
     #border {height: 100vh; box-sizing: border-box;}
-
-    #named {position:absolute; top: 50%; left:22%; transform: translateY(-120%);}
-    #name { font-size:4vw; font-family: sans-serif; font-weight: bold; font-style: italic; text-align: center;}
     
     #textd {position:absolute; top: 50%; left:50%; transform: translateX(-50%) translateY(-50%);}
     #text { font-size:15vw; font-family: sans-serif; font-weight: bold; font-style: italic; text-align: center;}
