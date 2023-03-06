@@ -11,8 +11,7 @@
     </div>
 </body>
 <script>
-    // let c = window.location.pathname.replace("/", "#")
-    let c = "#ff73af"
+    let c = window.location.pathname.replace("/", "#")
     let hex = c.match(/\w{1,2}/g)
     let lum = (parseInt(hex[0], 16) + parseInt(hex[1], 16) + parseInt(hex[2], 16)) / 3
     if (window.location.pathname !== "/") {
