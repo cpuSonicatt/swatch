@@ -6,4 +6,3 @@ Enter a hex colour code, without the #, after the URL: `swatch.cpusonicatt.com/f
 
 ## Options
 - `?border`: Adds a border around the swatch. Useful for if the swatch colour and the background colour it's placed on are similar). e.g. `swatch.cpusonicatt.com/ff004d?border`
-- `?name=...`: Places the passed text above the hex code. e.g. `swatch.cpusonicatt.com/ff004d?name=Red`
