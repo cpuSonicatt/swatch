@@ -10,22 +10,20 @@
 <script>
     let c = window.location.pathname.replace("/", "#")
     let hex = c.match(/\w{1,2}/g)
-    let lum = (parseInt(hex[0], 16) + parseInt(hex[1], 16) + parseInt(hex[2], 16)) / 3
-    if (window.location.pathname !== "/") {
+    if (hex) {
+        let lum = (parseInt(hex[0], 16) + parseInt(hex[1], 16) + parseInt(hex[2], 16)) / 3
         document.title = c.toUpperCase()
         document.body.style.backgroundColor = c
         document.getElementById("text").innerHTML = c.toUpperCase()
         document.getElementById("text").style.color = lum < 128 ? "white" : "black"
+        if (new URLSearchParams(window.location.search).has("border")) {
+            document.getElementById("border").style.border = `solid 3vmin ${lum < 128 ? "white" : "black"}`
+        }
     } else {
         document.body.style.backgroundColor = "black"
         document.getElementById("text").innerHTML = ":("
         document.getElementById("text").style.color = "white"
         document.title = "Swatch"
-    }
-
-    const params = new URLSearchParams(window.location.search)
-    if (params.has("border")) {
-        document.getElementById("border").style.border = `solid 3vmin ${lum < 128 ? "white" : "black"}`
     }
 </script>
 <style>
