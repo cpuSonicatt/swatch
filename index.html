@@ -9,8 +9,8 @@
 </body>
 <script>
     let c = window.location.pathname.replace("/", "#")
-    let hex = c.match(/\w{1,2}/g)
-    if (hex) {
+    if (c.length === 4 || c.length === 7) {
+        let hex = c.match(/[0-9A-Fa-f]{1,2}/g)
         let lum = (parseInt(hex[0], 16) + parseInt(hex[1], 16) + parseInt(hex[2], 16)) / 3
         document.title = c.toUpperCase()
         document.body.style.backgroundColor = c
@@ -21,7 +21,8 @@
         }
     } else {
         document.body.style.backgroundColor = "black"
-        document.getElementById("text").innerHTML = ":("
+        document.getElementById("text").innerHTML = "#??????<br/>put a hex colour in the URL"
+        document.getElementById("text").style.fontSize = "4vw"
         document.getElementById("text").style.color = "white"
         document.title = "Swatch"
     }
