@@ -10,7 +10,7 @@
 <script>
     let c = window.location.pathname.replace("/", "#")
     if (c.length === 4 || c.length === 7) {
-        let hex = c.match(/[0-9A-Fa-f]{1,2}/g)
+        let hex = c.replace(/^(\d)(\d)(\d)$/g, "$1$1$2$2$3$3").match(/[0-9A-Fa-f]{2}/g)
         let lum = (parseInt(hex[0], 16) + parseInt(hex[1], 16) + parseInt(hex[2], 16)) / 3
         document.title = c.toUpperCase()
         document.body.style.backgroundColor = c
