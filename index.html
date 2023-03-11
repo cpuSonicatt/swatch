@@ -11,9 +11,7 @@
     let c = window.location.pathname.replace("/", "#")
     if (/^#[0-9A-Fa-f]{3}$|^#[0-9A-Fa-f]{6}$/g.test(c)) {
         let hex = c.replace(/^#(\d)(\d)(\d)$/g, "$1$1$2$2$3$3").match(/[0-9A-Fa-f]{2}/g)
-        console.log(hex)
         let lum = (parseInt(hex[0], 16) + parseInt(hex[1], 16) + parseInt(hex[2], 16)) / 3
-        console.log(lum)
         document.title = c.toUpperCase()
         document.body.style.backgroundColor = c
         document.getElementById("text").innerHTML = c.toUpperCase()
